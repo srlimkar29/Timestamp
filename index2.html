@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Hello World</title>
+    <!-- Add some CSS to change client UI -->
+    <style>
+    body {
+        background-image: url('image.jpg');
+        background-size: cover;
+        background-position: center;
+    }
+    label, button {
+        color: #FF9900;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 20px;
+        margin-left: 40px;
+    }
+    input {
+        color: #232F3E;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 20px;
+        margin-left: 20px;
+    }
+    </style>
+    <script>
+    function callAPI() {
+        var firstName = document.getElementById('fName').value;
+        var lastName = document.getElementById('lName').value;
+        var data = {
+            firstName: firstName,
+            lastName: lastName
+        };
+        var requestOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        };
+        fetch('https://ukjwppy7qg.execute-api.us-east-1.amazonaws.com/dev/user', requestOptions)
+            .then(response => response.json())
+            .then(result => {
+                // Process the API response
+                console.log(result);
+                alert('API response: ' + JSON.stringify(result));
+            })
+            .catch(error => {
+                // Handle any errors that occurred during the API request
+                console.error(error);
+                alert('API request failed. Error: ' + error);
+            });
+    }
+    </script>
+</head>
+<body>
+    <form>
+        <label>First Name:</label>
+        <input type="text" id="fName">
+        <label>Last Name:</label>
+        <input type="text" id="lName">
+        <button type="button" onclick="callAPI()">Submit</button>
+    </form>
+</body>
+</html>
