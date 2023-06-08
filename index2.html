@@ -2,27 +2,31 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Hello World</title>
-    <!-- Add some CSS to change client UI -->
+    <title>Timestamp</title>
+
     <style>
     body {
-        background-image: url('image.jpg');
-        background-size: cover;
-        background-position: center;
+        background-color: #FFFFFF;
     }
     label, button {
-        color: #FF9900;
+        background-color: #FFFFFF;
+        color: #FF8000;
         font-family: Arial, Helvetica, sans-serif;
         font-size: 20px;
         margin-left: 40px;
+        cursor: pointer;
+        padding: 5px;
     }
     input {
-        color: #232F3E;
+        background-color: #FFFFFF;
+        color: #000000;
         font-family: Arial, Helvetica, sans-serif;
         font-size: 20px;
         margin-left: 20px;
+        padding: 5px;
     }
     </style>
+
     <script>
     function callAPI() {
         var firstName = document.getElementById('fName').value;
@@ -38,7 +42,8 @@
             },
             body: JSON.stringify(data)
         };
-        fetch('https://ukjwppy7qg.execute-api.us-east-1.amazonaws.com/dev/user', requestOptions)
+        // Paste URL of API Gateway
+        fetch('<URL of API Gateway>', requestOptions)
             .then(response => response.json())
             .then(result => {
                 // Process the API response
@@ -53,11 +58,13 @@
     }
     </script>
 </head>
+
 <body>
+    <center> <h1 style="color: #FF8000; font-family: Arial, Helvetica, sans-serif"> WebApp to store Timestamp </h1> </center>
     <form>
-        <label>First Name:</label>
+        <label>First Name : </label>
         <input type="text" id="fName">
-        <label>Last Name:</label>
+        <label>Last Name : </label>
         <input type="text" id="lName">
         <button type="button" onclick="callAPI()">Submit</button>
     </form>
